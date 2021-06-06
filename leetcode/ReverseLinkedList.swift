@@ -7,26 +7,39 @@
  */
 import Foundation
 
-class LinkedList {
-    var head: ListNode?
-    var tail: ListNode?
-    
-    func push(val: Int) {
-        head = ListNode(val, head)
-        if tail == nil { tail = head }
-    }
-}
+//class LinkedList {
+//    var head: ListNode?
+//    var tail: ListNode?
+//
+//    func push(val: Int) {
+//        head = ListNode(val, head)
+//        if tail == nil { tail = head }
+//    }
+//}
+//
+//func reverseList(_ head: ListNode?) -> ListNode? {
+//    let list = LinkedList()
+//    var currentNode = head
+//
+//    while currentNode != nil {
+//        list.push(val: currentNode!.val)
+//        currentNode = currentNode?.next
+//    }
+//
+//    return list.head
+//}
 
 func reverseList(_ head: ListNode?) -> ListNode? {
-    let list = LinkedList()
-    var currentNode = head
+    var prev: ListNode? = nil
+    var current = head
     
-    while currentNode != nil {
-        list.push(val: currentNode!.val)
-        currentNode = currentNode?.next
+    while current != nil {
+        let next = current?.next
+        current?.next = prev
+        prev = current
+        current = next
     }
-    
-    return list.head
+    return prev
 }
 
 public class ListNode {
